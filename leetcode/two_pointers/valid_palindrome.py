@@ -1,3 +1,6 @@
+# https://leetcode.com/problems/valid-palindrome/
+
+
 class Solution:
     def isPalindrome(self, s: str) -> bool:
         return simple_solution(norm(s))
