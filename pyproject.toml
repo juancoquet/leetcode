@@ -1,0 +1,52 @@
+[project]
+name = "leetcode"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pytest>=8.4.1",
+]
+
+[tool.ruff]
+line-length = 100
+lint.select = ["ALL"]
+lint.ignore = [
+    "COM812",
+    "D",
+    "EM101",
+    "EM102",
+    "FIX",
+    "G001",
+    "G002",
+    "G003",
+    "G004",
+    "LOG015",
+    "N802",
+    "N999",
+    "PLR0913",
+    "RET504",
+    "TD",
+    "TRY003",
+    "TRY300",
+    "UP006",
+    "UP035",
+]
+exclude = [
+    "src/contracts/xdoc_storage_sdk/contracts/",
+]
+[tool.ruff.lint.extend-per-file-ignores]
+# test file linting exceptions
+"tests/**/*.py" = [
+    "S101", # allow the use of asserts
+    "FBT", # allow boolean args
+    "PLR2004", # allow magic values in comparisons
+    "T201", # allow print statements
+    "S311", # allow use of pseudorandom numbers, as opposed to cryptographically secure random
+]
+[tool.ruff.lint.flake8-type-checking]
+runtime-evaluated-base-classes = ["pydantic.BaseModel"]
+
+[tool.pyright]
+typeCheckingMode = "strict"
+reportMissingTypeStubs = false
