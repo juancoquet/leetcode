@@ -6,9 +6,6 @@ from typing import Dict
 
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        if (lenn := len(s)) <= 1:
-            return lenn
-
         seen: Dict[str, int] = {}  # {char: idx}
         l, longest = 0, 0
         for r, char in enumerate(s):
