@@ -1,22 +1,20 @@
 # https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
 
 
+from typing import Dict
+
+
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        if len(s) <= 1:
-            return len(s)
+        if (lenn := len(s)) <= 1:
+            return lenn
 
-        l, r = 0, 1
-        longest = 0
-        while r <= len(s):
-            if has_dupes(s[l:r]):
-                l += 1
-                r += 1
-            else:
-                longest = max(longest, r - l)
-                r += 1
+        seen: Dict[str, int] = {}  # {char: idx}
+        l, longest = 0, 0
+        for r, char in enumerate(s):
+            if char in seen and seen[char] >= l:
+                l = seen[char] + 1
+            seen[char] = r
+            longest = max(longest, r - l + 1)
+
         return longest
-
-
-def has_dupes(s: str) -> bool:
-    return len(set(s)) != len(s)
