@@ -32,6 +32,7 @@ lint.ignore = [
     "TRY003",
     "TRY300",
     "UP006",
+    "UP007",
     "UP035",
 ]
 exclude = [
