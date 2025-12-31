@@ -6,7 +6,7 @@ from pydantic import BaseModel, model_validator
 from leetcode.heap.kth_lagest_element import KthLargest
 
 
-class TestCase(BaseModel):
+class Case(BaseModel):
     k: int
     nums: list[int]
     additions: list[int]
@@ -26,13 +26,13 @@ class TestCase(BaseModel):
 
 
 test_cases = [
-    TestCase(k=3, nums=[4, 5, 8, 2], additions=[3, 5, 10, 9, 4], expected=[4, 5, 5, 8, 8]),
-    TestCase(k=4, nums=[7, 7, 7, 7, 8, 3], additions=[2, 10, 9, 9], expected=[7, 7, 7, 8]),
+    Case(k=3, nums=[4, 5, 8, 2], additions=[3, 5, 10, 9, 4], expected=[4, 5, 5, 8, 8]),
+    Case(k=4, nums=[7, 7, 7, 7, 8, 3], additions=[2, 10, 9, 9], expected=[7, 7, 7, 8]),
 ]
 
 
 @pytest.mark.parametrize(("tc"), test_cases)
-def test_kth_largest(tc: TestCase) -> None:
+def test_kth_largest(tc: Case) -> None:
     tracker = KthLargest(tc.k, tc.nums)
     for num, exp in zip(tc.additions, tc.expected, strict=True):
         assert tracker.add(num) == exp
